@@ -1,0 +1,5 @@
+[INFO ] 2020-09-13 14:25:52.088 - testBase.MyLogger:startTestCase 21==>  
+
+************** Execution Started : TestCase3**************
+
+[INFO ] 2020-09-13 14:25:52.218 - Tests.TestCase:TestCase3 40==>  test3
