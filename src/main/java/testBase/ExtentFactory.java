@@ -1,7 +1,5 @@
 package testBase;
 
-import org.openqa.selenium.WebDriver;
-
 import com.aventstack.extentreports.ExtentTest;
 
 /**

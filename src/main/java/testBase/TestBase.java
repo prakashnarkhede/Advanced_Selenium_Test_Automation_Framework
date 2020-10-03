@@ -2,11 +2,9 @@ package testBase;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import pageObjects.LoginPageObjects;
 import reusableComponents.ActionEngine;
 import reusableComponents.PropertiesOperations;
 
@@ -33,7 +31,7 @@ public class TestBase extends ActionEngine {
 
 	@AfterMethod
 	public void tearDown() {
-	//	DriverFactory.getInstance().closeBrowser();
+		DriverFactory.getInstance().closeBrowser();
 	}
 
 }

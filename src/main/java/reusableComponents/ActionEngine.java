@@ -96,41 +96,44 @@ public class ActionEngine {
 			ExtentFactory.getInstance().getExtent().log(Status.FAIL, "Dropdown value not selected for field: " +fieldName +"  due to exception: "+e);
 		}
 	}
-	
+
 	//Select dropdown value value by value
-		public void selectDropDownByValue_custom(WebElement element, String fieldName, String ddValue) throws Throwable {
-			try {
-				Select s = new Select(element);
-				s.selectByValue(ddValue);
-				ExtentFactory.getInstance().getExtent().log(Status.PASS, fieldName+"==> Dropdown Value Selected by visible text: "+ ddValue);
-			} catch (Exception e) {
-				ExtentFactory.getInstance().getExtent().log(Status.FAIL, "Dropdown value not selected for field: " +fieldName +"  due to exception: "+e);
-			}
-		}
-
-		//String Asserts
-		public void assertEqualsString_custom(String expvalue, String actualValue, String locatorName) throws Throwable {
+	public void selectDropDownByValue_custom(WebElement element, String fieldName, String ddValue) throws Throwable {
 		try {
-				Assert.assertEquals(expvalue, actualValue);
+			Select s = new Select(element);
+			s.selectByValue(ddValue);
+			ExtentFactory.getInstance().getExtent().log(Status.PASS, fieldName+"==> Dropdown Value Selected by visible text: "+ ddValue);
+		} catch (Exception e) {
+			ExtentFactory.getInstance().getExtent().log(Status.FAIL, "Dropdown value not selected for field: " +fieldName +"  due to exception: "+e);
+		}
+	}
+
+	//String Asserts
+	public void assertEqualsString_custom(String expvalue, String actualValue, String locatorName) throws Throwable {
+		try {
+			if(actualValue.equals(expvalue)) {
 				ExtentFactory.getInstance().getExtent().log(Status.PASS, "String Assertion is successful on field "+ locatorName + " Expected value was: "+ expvalue + " actual value is: "+actualValue);
-			} catch (Exception e) {
+			}else {
 				ExtentFactory.getInstance().getExtent().log(Status.FAIL, "String Assertion FAILED on field "+ locatorName + " Expected value was: "+ expvalue + " actual value is: "+actualValue);
-
+				Assert.assertTrue(false);
 			}
+		} catch (Exception e) {
+			Assert.assertTrue(false, e.toString());
 		}
+	}
 
-		//Get text from webelement
-		public String getText_custom(WebElement element, String fieldName) {
-			String text = "";
-			try {
-					text = element.getText();
-					ExtentFactory.getInstance().getExtent().log(Status.PASS, fieldName+"==> Text retried is: "+ text);
-					return text;
-			} catch (Exception e) {		
-				ExtentFactory.getInstance().getExtent().log(Status.FAIL, fieldName+"==> Text not retried due to exception: "+ e);
-
-			}
+	//Get text from webelement
+	public String getText_custom(WebElement element, String fieldName) {
+		String text = "";
+		try {
+			text = element.getText();
+			ExtentFactory.getInstance().getExtent().log(Status.PASS, fieldName+"==> Text retried is: "+ text);
 			return text;
+		} catch (Exception e) {		
+			ExtentFactory.getInstance().getExtent().log(Status.FAIL, fieldName+"==> Text not retried due to exception: "+ e);
+
 		}
+		return text;
+	}
 
 }

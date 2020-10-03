@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.HashMap;
+
 import org.openqa.selenium.By;
 
 import testBase.DriverFactory;
@@ -22,26 +24,26 @@ public class TaskPageObjects extends TestBase {
 	By btn_save = By.xpath("//button[@type='submit' and text()='Save']");
 
 
-	public void createTask() throws Throwable {
+	public void createTask(HashMap<String, String> testData) throws Throwable {
 		Thread.sleep(2000);
-		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_SelectProjectForNewTaskCreation), "NewTaskProjectDropDown", "New Development - Internal WebSite");
-		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_taskType), "NewTaskType", "Defects (Hourly rate $0.00)");
-		sendKeys_custom(DriverFactory.getInstance().getDriver().findElement(txt_taskName), "newTaskName", "DemoTask1");
-		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_taskStatus), "NewTaskStatus", "Open");
-		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_taskPriority), "NewTaskPriority", "Medum");
-		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_taskLabel), "NewTaskLabel", "Task");
+		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_SelectProjectForNewTaskCreation), "NewTaskProjectDropDown", testData.get("ProjectToCreateTaskUnder"));
+		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_taskType), "NewTaskType", testData.get("TaskType"));
+		sendKeys_custom(DriverFactory.getInstance().getDriver().findElement(txt_taskName), "newTaskName", testData.get("TaskName"));
+		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_taskStatus), "NewTaskStatus", testData.get("TaskStatus"));
+		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_taskPriority), "NewTaskPriority", testData.get("TaskPriority"));
+		selectDropDownByVisibleText_custom(DriverFactory.getInstance().getDriver().findElement(dd_taskLabel), "NewTaskLabel", testData.get("Label"));
 		click_custom(DriverFactory.getInstance().getDriver().findElement(btn_save), "NewTaskSaveButton");
 
 	}
 
-	public void Search_Verify_TaskCreationOnUI() throws Throwable {
+	public void Search_Verify_TaskCreationOnUI(HashMap<String, String> testData) throws Throwable {
 
 		moveToElement_custom(DriverFactory.getInstance().getDriver().findElement(field_Search), "TaskSearchOption");
-		sendKeys_custom(DriverFactory.getInstance().getDriver().findElement(txt_Search), "TaskSearchBox", "DemoTask1");
+		sendKeys_custom(DriverFactory.getInstance().getDriver().findElement(txt_Search), "TaskSearchBox", testData.get("TaskName"));
 		click_custom(DriverFactory.getInstance().getDriver().findElement(btn_Search), "SearchButton");
 		
 		//table verification
-		assertEqualsString_custom("TaskName", getTaskTableCellValueByColumnName("Name"), "TaskNameInTable");
+		assertEqualsString_custom(testData.get("TaskName"), getTaskTableCellValueByColumnName("Name"), "TaskNameInTable");
 
 	}
 

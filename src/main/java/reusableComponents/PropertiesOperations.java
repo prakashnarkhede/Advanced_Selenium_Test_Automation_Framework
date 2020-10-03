@@ -16,17 +16,24 @@ public class PropertiesOperations {
 	
 	static Properties prop = new Properties();
 	
-	public static String getPropertyValueByKey(String key) throws Exception {
+	public static String getPropertyValueByKey(String key) {
 		//1. load data from properties file
 		String propFilePath = System.getProperty("user.dir")+"/src/test/resources/config.properties";
-		FileInputStream fis = new FileInputStream(propFilePath);
-		prop.load(fis);
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(propFilePath);
+			prop.load(fis);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		//2. read data
 		String value = prop.get(key).toString();
 		
 		if(StringUtils.isEmpty(value)) {
-			throw new Exception("Value is not specified for key: "+key + " in properties file.");
+			try {		
+				throw new Exception("Value is not specified for key: "+key + " in properties file.");
+			}catch(Exception e) {}
 		}
 		
 		return value;
