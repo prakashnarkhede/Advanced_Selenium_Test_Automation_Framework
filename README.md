@@ -12,7 +12,9 @@ Refer below playlist (Under construction): https://www.youtube.com/playlist?list
 #Topic wise videos
 
 Video#1 -  Course Introduction --> https://youtu.be/8OjTupvE8mI
+
 Video#2 -  AUT and Test Cases walkthrough --> https://youtu.be/2cueo-051zI
+
 Video#3 -  Create folder structure --> https://youtu.be/z-AKOHA1dnM
 Video#4 -  Start creating Page Objects --> https://youtu.be/Thql1qrWFcI
 Video#5 -  Demo on XPath writting tool - SelectorsHub --> https://youtu.be/QLCrVmy61Co
