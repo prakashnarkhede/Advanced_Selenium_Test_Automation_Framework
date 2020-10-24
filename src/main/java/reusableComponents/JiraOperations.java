@@ -2,6 +2,8 @@ package reusableComponents;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Base64;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -14,7 +16,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import Decoder.BASE64Encoder;
 
 /**
  * @author: Prakash Narkhede
@@ -37,8 +38,9 @@ public class JiraOperations {
 		HttpPost postRequest = new HttpPost(url);
 		postRequest.addHeader("content-type", "application/json");
 
-		BASE64Encoder base=new BASE64Encoder();
-		String encoding = base.encode((jiraUserName+":"+jiraAccessKey).getBytes());
+	//	BASE64Encoder base=new BASE64Encoder();
+		String encoding = Base64.getEncoder().encodeToString((jiraUserName+":"+jiraAccessKey).getBytes());
+		//String encoding = base.encode((jiraUserName+":"+jiraAccessKey).getBytes());
 		postRequest.setHeader("Authorization", "Basic " + encoding);
 
 		StringEntity params = new StringEntity(createPayloadForCreateJiraIssue(ProjectName, issueSummary, issueDescription, component, priority, label, env, assignee));
@@ -69,8 +71,10 @@ public class JiraOperations {
 			String url = jiraURL+"/rest/api/3/issue/"+issueId+"/attachments";
 			HttpPost postRequest = new HttpPost(url);
 
-			BASE64Encoder base=new BASE64Encoder();
-			String encoding = base.encode((jiraUserName+":"+jiraAccessKey).getBytes());
+			//BASE64Encoder base=new BASE64Encoder();
+			//String encoding = base.encode((jiraUserName+":"+jiraAccessKey).getBytes());
+			String encoding = Base64.getEncoder().encodeToString((jiraUserName+":"+jiraAccessKey).getBytes());
+
 			postRequest.setHeader("Authorization", "Basic " + encoding);
 			postRequest.setHeader("X-Atlassian-Token","nocheck");
 
