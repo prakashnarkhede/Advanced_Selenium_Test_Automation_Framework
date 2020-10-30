@@ -104,7 +104,6 @@ public class ListenersImplementation implements ITestListener{
 		try {
 			 report = ExtentReportNG.setupExtentReport();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

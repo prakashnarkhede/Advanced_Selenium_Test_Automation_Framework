@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Demo Web App test suite" parallel="classes"
+<suite name="Demo Web App test suite" parallel="tests"
 	thread-count="3">
 	<listeners>
 		<listener
@@ -8,10 +8,14 @@
 		<listener
 			class-name="reusableComponents.TestRetryAnalyzerListener" />
 	</listeners>
-	<test name="Test">
+	<test name="LoginTests">
 		<classes>
 			<class name="Tests.UserLoginTests" />
-			<class name="Tests.TestCase" />
+		</classes>
+	</test> <!-- Test -->
+		<test name="DataDriven Tests">
+		<classes>
+		<class name="Tests.TestCase" /> 
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

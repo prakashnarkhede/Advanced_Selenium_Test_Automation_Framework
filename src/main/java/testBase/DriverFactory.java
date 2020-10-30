@@ -35,7 +35,7 @@ public class DriverFactory {
 	
 	
 	public void closeBrowser() {
-		driver.get().close();
+		driver.get().quit();
 		driver.remove();
 	}
 }
