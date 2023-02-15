@@ -2,4 +2,6 @@
 .project
 test-output/
 target/
+logs/
+Reports/
 .settings
